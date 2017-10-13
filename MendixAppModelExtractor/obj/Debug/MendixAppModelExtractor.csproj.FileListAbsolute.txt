@@ -1,0 +1,17 @@
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\MendixAppModelExtractor.exe.config
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\MendixAppModelExtractor.exe
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\MendixAppModelExtractor.pdb
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.csprojResolveAssemblyReference.cache
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.MainForm.resources
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.Properties.Resources.resources
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.csproj.GenerateResource.Cache
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.exe
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.pdb
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\EntityFramework.dll
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\EntityFramework.SqlServer.dll
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\System.Data.SQLite.dll
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\System.Data.SQLite.EF6.dll
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\System.Data.SQLite.Linq.dll
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\EntityFramework.xml
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\EntityFramework.SqlServer.xml
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\System.Data.SQLite.xml
