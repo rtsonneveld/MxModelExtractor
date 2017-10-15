@@ -18,32 +18,41 @@ namespace MendixAppModelExtractor {
 
     private void buttonSelectFile_Click(object sender, EventArgs e) {
       var fileDialog = new OpenFileDialog();
-      fileDialog.Filter = "Mendix Project Packages|*.mpk|All files|*.*";
+      fileDialog.Filter = "Mendix Projects/Packages|*.mpr;*.mpk|All files|*.*";
       if (fileDialog.ShowDialog() != DialogResult.OK) {
         return;
       }
 
       string packageName = Path.GetFileNameWithoutExtension(fileDialog.FileName);
+      string extension = Path.GetExtension(fileDialog.FileName);
 
-      ZipArchiveEntry projectEntry = null;
+      Stream projectStream;
 
-      try {
-        System.IO.Compression.ZipArchive archive = new ZipArchive(fileDialog.OpenFile());
-        if (archive.GetEntry(packageName + ".mpr") != null) {
-          projectEntry = archive.GetEntry(packageName + ".mpr");
-        } else {
-          projectEntry = archive.GetEntry("project.mpr");
+      if (extension.ToLower() == ".mpk") {
+        ZipArchiveEntry projectEntry = null;
+
+        try {
+          System.IO.Compression.ZipArchive archive = new ZipArchive(fileDialog.OpenFile());
+          if (archive.GetEntry(packageName + ".mpr") != null) {
+            projectEntry = archive.GetEntry(packageName + ".mpr");
+          } else {
+            projectEntry = archive.GetEntry("project.mpr");
+          }
+        } catch (Exception exception) {
+          Console.WriteLine(exception.ToString());
         }
-      } catch(Exception exception) {
-        Console.WriteLine(exception.ToString());
-      }
-      if (projectEntry==null) {
-        MessageBox.Show("Please select a valid Mendix Project or Module Package (.mpk)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        return;
+        if (projectEntry == null) {
+          MessageBox.Show("Please select a valid Mendix Project or Module Package (.mpk)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          return;
+        }
+
+        projectStream = projectEntry.Open();
+      } else {
+        projectStream = File.OpenRead(fileDialog.FileName);
       }
 
-      var projectStream = projectEntry.Open();
       ExtractionHelper helper = new ExtractionHelper(projectStream);
+      helper.Init();
     }
   }
 }

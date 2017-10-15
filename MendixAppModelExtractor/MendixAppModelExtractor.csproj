@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MxUnit.cs" />
     <Compile Include="ExtractionHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

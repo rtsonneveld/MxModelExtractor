@@ -31,9 +31,9 @@
       // 
       this.buttonSelectFile.Location = new System.Drawing.Point(12, 12);
       this.buttonSelectFile.Name = "buttonSelectFile";
-      this.buttonSelectFile.Size = new System.Drawing.Size(97, 23);
+      this.buttonSelectFile.Size = new System.Drawing.Size(191, 23);
       this.buttonSelectFile.TabIndex = 0;
-      this.buttonSelectFile.Text = "Browse for MPK";
+      this.buttonSelectFile.Text = "Browse for Mendix Project/Package";
       this.buttonSelectFile.UseVisualStyleBackColor = true;
       this.buttonSelectFile.Click += new System.EventHandler(this.buttonSelectFile_Click);
       // 
