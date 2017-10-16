@@ -51,7 +51,7 @@ namespace MendixAppModelExtractor {
         projectStream = File.OpenRead(fileDialog.FileName);
       }
 
-      ExtractionHelper helper = new ExtractionHelper(projectStream);
+      ExtractionHelper helper = new ExtractionHelper(packageName, projectStream);
       helper.Init();
     }
   }

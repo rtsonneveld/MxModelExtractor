@@ -12,10 +12,12 @@ namespace MendixAppModelExtractor {
     private Stream projectStream;
     private String productVersion;
     private SQLiteConnection dbConnection;
+    private string packageName;
 
     private List<MxUnit> units;
 
-    public ExtractionHelper(Stream projectStream) {
+    public ExtractionHelper(string packageName, Stream projectStream) {
+      this.packageName = packageName;
       this.projectStream = projectStream;
     }
 
@@ -80,6 +82,12 @@ namespace MendixAppModelExtractor {
       #region Read Unit Objects
 
       units = new List<MxUnit>();
+      string exportPath = "./export/" + packageName + "/";
+
+      // Delete current export directory
+      if (Directory.Exists(exportPath)) {
+        Directory.Delete(exportPath, true);
+      }
 
       string sql_getUnitObjects = "select * from Unit";
       using (command = new SQLiteCommand(sql_getUnitObjects, this.dbConnection)) {
@@ -92,10 +100,10 @@ namespace MendixAppModelExtractor {
             #region Fill MxUnit from database record
             byte[] unitID             = (byte[])  reader["UnitID"];
             byte[] containerID        = (byte[])  reader["ContainerID"];
-            string containmentName    = (string)      reader["ContainmentName"];
-            long treeConflict         = (long)        reader["TreeConflict"];
-            string contentsHash       = (string)      reader["ContentsHash"];
-            string contentsConflicts  = (string)      reader["ContentsConflicts"];
+            string containmentName    = (string)  reader["ContainmentName"];
+            long treeConflict         = (long)    reader["TreeConflict"];
+            string contentsHash       = (string)  reader["ContentsHash"];
+            string contentsConflicts  = (string)  reader["ContentsConflicts"];
             byte[] contents           = (byte[])  reader["Contents"];
 
             mxUnit.UnitID             = unitID;
@@ -108,10 +116,20 @@ namespace MendixAppModelExtractor {
             mxUnit.Contents           = contents;
             #endregion
 
-            Console.WriteLine("Read element " + mxUnit);
-            /*unitID.Dispose();
-            containerID.Dispose();
-            contents.Dispose();*/
+            Contents contentsObj = mxUnit.getContentsAsJson();
+            string name = (contentsObj.Name == null) ? "" : contentsObj.Name.Replace('/','_');
+            string type = contentsObj.Type;
+
+            // Create a new one
+            Directory.CreateDirectory(exportPath+type+"/");
+
+            FileStream exportFile = File.Create(exportPath+type+"/"+name+".json");
+            string jsonString = mxUnit.getContentsAsJsonString();
+            exportFile.Write(Encoding.ASCII.GetBytes(jsonString), 0, jsonString.Length);
+            exportFile.Flush();
+            exportFile.Close();
+
+            Console.WriteLine("Read element " + mxUnit+", name = "+name+", type = "+type);
           }
 
         }
