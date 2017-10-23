@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using MendixAppModelExtractor.MendixProject;
 
 namespace MendixAppModelExtractor {
   class ExtractionHelper {
@@ -123,7 +125,7 @@ namespace MendixAppModelExtractor {
             // Create a new one
             Directory.CreateDirectory(exportPath+type+"/");
 
-            FileStream exportFile = File.Create(exportPath+type+"/"+name+".json");
+            FileStream exportFile = File.Create(exportPath+type+"/"+name+"_"+mxUnit.GetUnitID()+".json");
             string jsonString = mxUnit.getContentsAsJsonString();
             exportFile.Write(Encoding.ASCII.GetBytes(jsonString), 0, jsonString.Length);
             exportFile.Flush();
@@ -134,6 +136,14 @@ namespace MendixAppModelExtractor {
 
         }
       }
+
+      var infoFile = File.Create(exportPath + "info.json");
+      var info = new ProjectInfo();
+      info.productVersion = productVersion;
+      info.productName = packageName;
+
+      string infoString = JsonConvert.SerializeObject(info);
+      infoFile.Write(Encoding.ASCII.GetBytes(infoString), 0, infoString.Length);
       #endregion
     }
 

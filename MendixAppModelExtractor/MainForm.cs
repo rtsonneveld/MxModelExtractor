@@ -14,6 +14,9 @@ namespace MendixAppModelExtractor {
   public partial class MainForm : Form {
     public MainForm() {
       InitializeComponent();
+
+      refreshProjectList();
+      
     }
 
     private void buttonSelectFile_Click(object sender, EventArgs e) {
@@ -53,6 +56,24 @@ namespace MendixAppModelExtractor {
 
       ExtractionHelper helper = new ExtractionHelper(packageName, projectStream);
       helper.Init();
+    }
+
+    private void refreshProjectList() {
+      projectSelector.Items.Clear();
+      string[] directories = Directory.GetDirectories("export");
+      foreach (string directory in directories) {
+        var dir = new DirectoryInfo(directory);
+        projectSelector.Items.Add(dir.Name);
+      }
+    }
+
+    private void buttonRefreshProjectList_Click(object sender, EventArgs e) {
+      refreshProjectList();
+    }
+
+    private void buttonOpenProject_Click(object sender, EventArgs e) {
+      ProjectExplorer explorer = new ProjectExplorer((string)projectSelector.SelectedItem);
+      explorer.ShowDialog();
     }
   }
 }

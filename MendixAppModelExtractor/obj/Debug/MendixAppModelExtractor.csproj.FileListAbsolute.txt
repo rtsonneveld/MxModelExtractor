@@ -19,3 +19,4 @@ G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\Newto
 G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\Newtonsoft.Json.xml
 G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\MongoDB.Bson.dll
 G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\bin\Debug\MongoDB.Bson.xml
+G:\Dev\Projecten\MendixAppModelExtractor\MendixAppModelExtractor\obj\Debug\MendixAppModelExtractor.ProjectExplorer.resources

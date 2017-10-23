@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MendixProject\Container.cs" />
+    <Compile Include="MendixProject\Document.cs" />
+    <Compile Include="MendixProject\Folder.cs" />
+    <Compile Include="MendixProject\Module.cs" />
+    <Compile Include="MendixProject\Project.cs" />
+    <Compile Include="MendixProject\ProjectInfo.cs" />
     <Compile Include="MxUnit.cs" />
     <Compile Include="ExtractionHelper.cs" />
     <Compile Include="MainForm.cs">
@@ -88,9 +94,18 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="MendixProject\ProjectExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MendixProject\ProjectExplorer.Designer.cs">
+      <DependentUpon>ProjectExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MendixProject\ProjectExplorer.resx">
+      <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

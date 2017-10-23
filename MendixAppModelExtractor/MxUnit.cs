@@ -36,7 +36,7 @@ namespace MendixAppModelExtractor {
   class MxUnit {
 
     public byte[] UnitID;
-    public byte[] ContainerID;
+    public byte[] ContainerID; // Indicates the 'parent' Unit
     public ContainmentName ContainmentName;
     public long TreeConflict;
     public string ContentsHash;
@@ -47,6 +47,10 @@ namespace MendixAppModelExtractor {
       uint unitId_int = 0;
       unitId_int = BitConverter.ToUInt32(UnitID, 0);
       return String.Format("MxUnit{{UnitId={0},ContainmentName={1}}}", unitId_int, ContainmentName);
+    }
+
+    public uint GetUnitID() {
+      return BitConverter.ToUInt32(UnitID, 0);
     }
 
     public Contents getContentsAsJson() {
@@ -67,7 +71,8 @@ namespace MendixAppModelExtractor {
       using (BsonReader reader = new BsonReader(ms)) {
         JsonSerializer serializer = new JsonSerializer();
 
-        object deserialized = serializer.Deserialize(reader);
+        dynamic deserialized = serializer.Deserialize(reader);
+        deserialized["ContainerId"] = ContainerID;
         return JsonConvert.SerializeObject(deserialized, Formatting.Indented);
       }
     }
